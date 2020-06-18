@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/login.dart';
+import 'package:pos_app/welcome.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Login',
       debugShowCheckedModeBanner: false,
-      home: Login(),
+      home:Welcome(),
     );
   }
 }
