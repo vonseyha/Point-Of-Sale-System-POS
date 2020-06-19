@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -90,7 +89,6 @@ class Welcome extends StatelessWidget {
                           ),
                         ),
                       ),
-
                       new Container(
                         width: 220.0,
                         height: 100.0,
@@ -119,7 +117,6 @@ class Welcome extends StatelessWidget {
                   ),
                 )
               ],
-
           ),
       ),
     );
