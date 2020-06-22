@@ -22,10 +22,10 @@ class Welcome extends StatelessWidget {
                     height:700,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                           image:AssetImage("images/welcome.png"),
+                           image:AssetImage("images/welcome.jpg"),
                     ),
                   ),
-                )
+                 )
                 ),
                 Expanded(
                   child: Column(
@@ -41,7 +41,6 @@ class Welcome extends StatelessWidget {
                                 color:Colors.white,
                               )
                           )
-
                       ),
                       new Container(
                           child: new Text(
