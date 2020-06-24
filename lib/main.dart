@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:pos_app/add_product.dart';
 import 'package:pos_app/login.dart';
 import 'package:pos_app/report.dart';
+import 'package:pos_app/stockManagement/add_staff.dart';
 import 'package:pos_app/update_product.dart';
 import 'package:pos_app/welcome.dart';
 
 import 'cashier_Profie_detail.dart';
+import 'dashbaord.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Login',
       debugShowCheckedModeBanner: false,
-      home:  Report(),
+      home: Dashbaord(),
     );
   }
 }
