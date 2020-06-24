@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CashierDetail extends StatefulWidget {
@@ -9,7 +10,11 @@ class CashierDetail extends StatefulWidget {
 
 class _Productdetail extends State<CashierDetail>{
 
-  String name = "Sanit Korn";
+  String _name = "Sanit Korn";
+  String _nickName = "Ninja*s";
+  String _contact = "0985241786" ;
+  String _address = "PreakLeab,Phnom Penh";
+  String _eamil = "sanit@gmail.com";
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -61,7 +66,7 @@ class _Productdetail extends State<CashierDetail>{
                   Container(
                     margin: const EdgeInsets.only(left: 130.0,top: 20.0),
                       child: new Text(
-                          name,
+                          _name,
                           style: new TextStyle(
                             fontSize: 35.0,
                             fontFamily: 'Roboto',
@@ -107,7 +112,7 @@ class _Productdetail extends State<CashierDetail>{
                         Container(
                           margin: const EdgeInsets.only(left: 60.0),
                             child: new Text(
-                                name,
+                                _name,
                                 style: new TextStyle(
                                   fontSize: 30.0,
                                   fontFamily: 'Roboto',
@@ -138,7 +143,7 @@ class _Productdetail extends State<CashierDetail>{
                         Container(
                             margin: const EdgeInsets.only(left: 60.0),
                             child: new Text(
-                                name,
+                                _nickName,
                                 style: new TextStyle(
                                   fontSize: 30.0,
                                   fontFamily: 'Roboto',
@@ -170,7 +175,7 @@ class _Productdetail extends State<CashierDetail>{
                         Container(
                             margin: const EdgeInsets.only(left: 60.0),
                             child: new Text(
-                                name,
+                                _contact,
                                 style: new TextStyle(
                                   fontSize: 30.0,
                                   fontFamily: 'Roboto',
@@ -202,7 +207,7 @@ class _Productdetail extends State<CashierDetail>{
                         Container(
                             margin: const EdgeInsets.only(left: 60.0),
                             child: new Text(
-                                name,
+                                _eamil,
                                 style: new TextStyle(
                                   fontSize: 30.0,
                                   fontFamily: 'Roboto',
@@ -234,7 +239,7 @@ class _Productdetail extends State<CashierDetail>{
                         Container(
                             margin: const EdgeInsets.only(left: 60.0),
                             child: new Text(
-                                name,
+                                _address,
                                 style: new TextStyle(
                                   fontSize: 30.0,
                                   fontFamily: 'Roboto',
