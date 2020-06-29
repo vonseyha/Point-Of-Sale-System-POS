@@ -5,8 +5,8 @@ import 'dart:io';
 
 import 'constant.dart';
 
-class PickImageDemo extends StatefulWidget {
-  PickImageDemo() : super();
+class ProductUpdate extends StatefulWidget {
+  ProductUpdate () : super();
 
   final String title = "Flutter Pick Image demo";
 
@@ -14,7 +14,7 @@ class PickImageDemo extends StatefulWidget {
   _PickImageDemoState createState() => _PickImageDemoState();
 }
 
-class _PickImageDemoState extends State<PickImageDemo> {
+class _PickImageDemoState extends State<ProductUpdate > {
   Future<File> imageFile;
 
   var _productName;
@@ -59,15 +59,15 @@ class _PickImageDemoState extends State<PickImageDemo> {
             width: 230,
             height: 200,
             decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.lightBlueAccent,
-                  width: 5,
-                ),
+              border: Border.all(
+                color: Colors.lightBlueAccent,
+                width: 5,
+              ),
               borderRadius: BorderRadius.circular(10),
-                image: const DecorationImage(
-                  image: NetworkImage('https://cdn3.iconfinder.com/data/icons/ui-base-set/100/Artboard_41_copy_41-512.png'),
-                  fit: BoxFit.cover,
-                ),
+              image: const DecorationImage(
+                image: NetworkImage('https://cdn3.iconfinder.com/data/icons/ui-base-set/100/Artboard_41_copy_41-512.png'),
+                fit: BoxFit.cover,
+              ),
 
             ),
           );
@@ -89,10 +89,10 @@ class _PickImageDemoState extends State<PickImageDemo> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Text(
-                "Add New Product",
+                "Update Product",
                 style: TextStyle(
-                    fontSize: 40.0,
-                    fontWeight: FontWeight.bold,
+                  fontSize: 40.0,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -315,48 +315,48 @@ class _PickImageDemoState extends State<PickImageDemo> {
                               padding: const EdgeInsets.only(top: 40.0),
                               child: new RaisedButton(
                                 child: new Text(
-                                "Concel",
-                                style: new TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 25.0,
-                                  fontFamily: 'RobotoMono',
-                                )
-                            ),
-                            colorBrightness: Brightness.light,
-                            onPressed: () {
-                              //push to new page
-                            },
-                            color: Colors.lightBlueAccent,
-                            shape:  RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                                    "Concel",
+                                    style: new TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25.0,
+                                      fontFamily: 'RobotoMono',
+                                    )
+                                ),
+                                colorBrightness: Brightness.light,
+                                onPressed: () {
+                                  //push to new page
+                                },
+                                color: Colors.lightBlueAccent,
+                                shape:  RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
                               ),
                             ),
-                           ),
                             //New button in row
-                           Container(
-                             margin: const EdgeInsets.only(left: 30.0),
-                             width: 190.0,
-                             height: 100.0,
-                             padding: const EdgeInsets.only(top: 40.0),
-                             child: new RaisedButton(
-                               child: new Text(
-                                   "Save",
-                                   style: new TextStyle(
-                                     color: Colors.white,
-                                     fontSize: 25.0,
-                                     fontFamily: 'RobotoMono',
-                                   )
-                               ),
-                               colorBrightness: Brightness.light,
-                               onPressed: () {
-                                 //push to new page
-                               },
-                               color: Colors.lightBlueAccent,
-                               shape:  RoundedRectangleBorder(
-                                 borderRadius: BorderRadius.circular(10.0),
-                               ),
-                             ),
-                           )
+                            Container(
+                              margin: const EdgeInsets.only(left: 30.0),
+                              width: 190.0,
+                              height: 100.0,
+                              padding: const EdgeInsets.only(top: 40.0),
+                              child: new RaisedButton(
+                                child: new Text(
+                                    "Update",
+                                    style: new TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25.0,
+                                      fontFamily: 'RobotoMono',
+                                    )
+                                ),
+                                colorBrightness: Brightness.light,
+                                onPressed: () {
+                                  //push to new page
+                                },
+                                color: Colors.lightBlueAccent,
+                                shape:  RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                              ),
+                            )
 
                           ],
                         ),
