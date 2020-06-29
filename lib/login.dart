@@ -1,9 +1,15 @@
+import 'dart:async';
+import 'dart:convert';
+import 'package:pos_app/profile.dart';
+import 'api_call.dart';
+import 'profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pos_app/constant.dart';
 import 'package:pos_app/signup.dart';
 import 'package:pos_app/wallpaper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -11,14 +17,26 @@ class Login extends StatefulWidget {
 }
 
 class _LoginScreen extends State<Login> {
-  bool _rememberMe = false;
 
-  var _phoneNumber;
-  final conPhone = new TextEditingController();
-  var _email;
-  final conEmail = new TextEditingController();
-  var _password;
-  final conPassword = new TextEditingController();
+  bool _rememberMe = false;
+  bool _isLoading = false;
+
+  TextEditingController conPhone = new TextEditingController();
+  TextEditingController conEmail = new TextEditingController();
+  TextEditingController conPassword = new TextEditingController();
+
+  _showMsg(msg) { //
+    final snackBar = SnackBar(
+      content: Text(msg),
+      action: SnackBarAction(
+        label: 'Close',
+        onPressed: () {
+          // Some code to undo the change!
+        },
+      ),
+    );
+    Scaffold.of(context).showSnackBar(snackBar);
+  }
 
   Widget _buildPhoneTF() {
     return Column(
@@ -30,7 +48,7 @@ class _LoginScreen extends State<Login> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           width: 500.0,
-          child: TextField(
+          child: TextFormField(
             controller: conPhone,
             keyboardType: TextInputType.phone,
             style: TextStyle(
@@ -40,7 +58,6 @@ class _LoginScreen extends State<Login> {
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 13.0),
               prefixIcon: Icon(
                 Icons.phone,
                 color: Color(0xFF00FF0F),
@@ -64,7 +81,7 @@ class _LoginScreen extends State<Login> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           width: 500.0,
-          child: TextField(
+          child: TextFormField(
             controller: conEmail,
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
@@ -74,7 +91,6 @@ class _LoginScreen extends State<Login> {
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 13.0),
               prefixIcon: Icon(
                 Icons.email,
                 color: Color(0xFF00FF0F),
@@ -98,7 +114,7 @@ class _LoginScreen extends State<Login> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           width: 500.0,
-          child: TextField(
+          child: TextFormField(
             controller: conPassword,
             obscureText: true,
             style: TextStyle(
@@ -108,7 +124,6 @@ class _LoginScreen extends State<Login> {
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 13.0),
               prefixIcon: Icon(
                 Icons.lock,
                 color: Color(0xFF00FF0F),
@@ -127,7 +142,7 @@ class _LoginScreen extends State<Login> {
       alignment: Alignment.centerRight,
       child: FlatButton(
         onPressed: () => print('Forgot Password Button Pressed'),
-        padding: EdgeInsets.only(right: 70.0),
+        padding: EdgeInsets.only(right: 65.0),
         child: Text(
           'Forgot Password?',
           style: kLabelStyle,
@@ -139,7 +154,7 @@ class _LoginScreen extends State<Login> {
   Widget _buildRememberMeCheckbox() {
     return Container(
       height: 20.0,
-      padding: EdgeInsets.only(left: 60.0),
+      padding: EdgeInsets.only(left: 55.0),
       child: Row(
         children: <Widget>[
           Theme(
@@ -171,15 +186,11 @@ class _LoginScreen extends State<Login> {
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () {
-          setState(() {
-            _phoneNumber = conPhone.text;
-            _email = conEmail.text;
-            _password = conPassword.text;
-          });
+          _isLoading ? null : _login;
+          conPhone.clear();
+          conEmail.clear();
+          conPassword.clear();
           print('Login Button Pressed');
-          print('phoneNumber'+ _phoneNumber);
-          print('email' + _email);
-          print('password' + _password);
         },
         padding: EdgeInsets.all(17.0),
         shape: RoundedRectangleBorder(
@@ -332,33 +343,42 @@ class _LoginScreen extends State<Login> {
                       ),
                     ),
                     Container(
+                      margin: EdgeInsets.all(10.0),
                       height: double.infinity,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              'LOGIN',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'OpenSans',
-                                fontSize: 30.0,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      child: ListView(
+                        shrinkWrap: true,
+                        children: <Widget>[
+                          Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                SizedBox(height: 50.0),
+                                Text(
+                                  'LOGIN',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'OpenSans',
+                                    fontSize: 40.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 30.0),
+                                _buildPhoneTF(),
+                                SizedBox(height: 30.0),
+                                _buildEmailTF(),
+                                SizedBox(height: 30.0),
+                                _buildPasswordTF(),
+                                _buildForgotPasswordBtn(),
+                                _buildRememberMeCheckbox(),
+                                _buildLoginBtn(),
+                                _buildSignInWith(),
+                                _buildSocialBtnRow(),
+                                _buildRegisterBtn(),
+                              ],
                             ),
-                            SizedBox(height: 30.0),
-                            _buildPhoneTF(),
-                            SizedBox(height: 30.0),
-                            _buildEmailTF(),
-                            SizedBox(height: 30.0),
-                            _buildPasswordTF(),
-                            _buildForgotPasswordBtn(),
-                            _buildRememberMeCheckbox(),
-                            _buildLoginBtn(),
-                            _buildSignInWith(),
-                            _buildSocialBtnRow(),
-                            _buildRegisterBtn(),
-                          ],
-                        ),
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -368,5 +388,36 @@ class _LoginScreen extends State<Login> {
         ),
       ),
     );
+  }
+
+  void _login() async{
+    setState(() {
+      _isLoading = true;
+    });
+
+    var data = {
+      'staff_phonenumber' : conPhone.text,
+      'staff_email' : conEmail.text,
+      'staff_password' : conPassword.text,
+    };
+    var res = await CallApi().postData(data, 'staff/read');
+    var body = json.decode(res.body);
+    if(body['success']){
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      localStorage.setString('token', body['token']);
+      localStorage.setString('user', json.encode(body['user']));
+      Navigator.push(
+          context,
+          new MaterialPageRoute(
+              builder: (context) => Profile()));
+    }else{
+      _showMsg(body['message']);
+    }
+
+
+    setState(() {
+      _isLoading = false;
+    });
+
   }
 }
