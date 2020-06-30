@@ -7,6 +7,7 @@ import 'package:pos_app/stockManagement/employerInfo/add_staff.dart';
 import 'package:pos_app/stockManagement/employerInfo/view_employee.dart';
 import 'package:pos_app/stockManagement/productInfo/view_product.dart';
 import 'package:pos_app/stockManagement/reportInfo/view_report.dart';
+import 'package:pos_app/stockManagement/supplierInfo/view_supplier.dart';
 import 'package:pos_app/update_product.dart';
 import 'package:pos_app/welcome.dart';
 import 'cashier_Profie_detail.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Login',
       debugShowCheckedModeBanner: false,
-      home: ViewReport(),
+      home: Welcome(),
     );
   }
 }

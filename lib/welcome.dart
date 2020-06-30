@@ -94,7 +94,7 @@ class Welcome extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 36.0),
                         child: new RaisedButton(
                           child: new Text(
-                              "Stock Sale",
+                              "Purchase",
                               style: new TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.0,

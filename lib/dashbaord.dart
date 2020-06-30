@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/report.dart';
+import 'package:pos_app/stockManagement/categoryInfo/view_category.dart';
+import 'package:pos_app/stockManagement/customerInfo/view_customer.dart';
+import 'package:pos_app/stockManagement/employerInfo/view_employee.dart';
+import 'package:pos_app/stockManagement/productInfo/view_product.dart';
+import 'package:pos_app/stockManagement/reportInfo/view_report.dart';
+import 'package:pos_app/stockManagement/supplierInfo/view_supplier.dart';
 import 'package:pos_app/update_product.dart';
+import 'package:pos_app/welcome.dart';
 
 import 'cashier_Profie_detail.dart';
 import 'login.dart';
@@ -54,51 +61,12 @@ class HomeScreenState extends State<Dashbaord>
               ),
             ]),
         actions: <Widget>[
-          InkWell(
-            onTap: () {
-              print("download");
-            },
-            child: Container(
-              margin: EdgeInsets.all(12),
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Colors.white,
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  Icon(
-                    Icons.cloud_download,
-                    color: Colors.black,
-                    size: 22,
-                  ),
-                  SizedBox(
-                    width: 4,
-                  ),
-                  Text(
-                    "Download Now",
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.black,
-                      fontFamily: 'HelveticaNeue',
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(width: 25),
-          Container(child: Icon(Icons.web)),
-          SizedBox(width: 25),
-          Container(child: Icon(Icons.account_circle)),
-          SizedBox(width: 25),
           Container(
             child: IconButton(
               padding: EdgeInsets.all(0),
               icon: Icon(Icons.exit_to_app),
               onPressed: () {
-                Navigator.pop(context);
+                //Navigator.pop(context);
               },
             ),
           ),
@@ -120,8 +88,6 @@ class HomeScreenState extends State<Dashbaord>
                 color: Colors.white,
                 child: listDrawerItems(false)),
           ),
-
-
           Container(
 
             width: MediaQuery.of(context).size.width < 1300
@@ -132,13 +98,13 @@ class HomeScreenState extends State<Dashbaord>
               physics: NeverScrollableScrollPhysics(),
               controller: tabController,
               children: [
-                Report(),
-                ProductUpdate(),
-                Login (),
-                CashierDetail(),
-                Login (),
-                CashierDetail(),
-                ProductUpdate(),
+                ViewEmployee(),
+                ViewCustomer(),
+                ViewSuplier(),
+                ViewProduct(),
+                ViewCategory(),
+                ViewReport(),
+                Welcome(),
               ],
             ),
           )

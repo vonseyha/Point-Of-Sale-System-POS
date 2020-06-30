@@ -109,7 +109,7 @@ class _ViewCategoryScreen extends State<ViewCategory>{
                         ),
 
                         Container(
-                          margin: const EdgeInsets.only(left: 850.0),
+                          margin: const EdgeInsets.only(left: 800.0),
                           height: 45.0,
                           child: new RaisedButton(
                             child: new Text(
@@ -202,29 +202,6 @@ class _ViewCategoryScreen extends State<ViewCategory>{
                                         Container(
                                           child: Row(
                                             children: [
-                                              Container(
-                                                width: 85.0,
-                                                height: 35.0,
-                                                padding: const EdgeInsets.only(bottom: 2.0 , left: 10.0 ),
-                                                child: new RaisedButton(
-                                                  child: new Text(
-                                                      "view",
-                                                      style: new TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15.0,
-                                                        fontFamily: 'RobotoMono',
-                                                      )
-                                                  ),
-                                                  colorBrightness: Brightness.light,
-                                                  onPressed: () {
-                                                    //push to new page
-                                                  },
-                                                  color: Colors.greenAccent,
-                                                  shape:  RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(5.0),
-                                                  ),
-                                                ),
-                                              ),
 
                                               Container(
                                                 width: 85.0,
@@ -241,7 +218,7 @@ class _ViewCategoryScreen extends State<ViewCategory>{
                                                   ),
                                                   colorBrightness: Brightness.light,
                                                   onPressed: () {
-                                                    //push to new page
+                                                    _displayDialog(context);
                                                   },
                                                   color: Colors.lightBlueAccent,
                                                   shape:  RoundedRectangleBorder(
@@ -265,7 +242,7 @@ class _ViewCategoryScreen extends State<ViewCategory>{
                                                   ),
                                                   colorBrightness: Brightness.light,
                                                   onPressed: () {
-                                                    //push to new page
+                                                    //new page
                                                   },
                                                   color: Colors.red,
                                                   shape:  RoundedRectangleBorder(

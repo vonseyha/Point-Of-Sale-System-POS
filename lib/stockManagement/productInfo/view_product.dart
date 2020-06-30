@@ -769,7 +769,7 @@ class _ViewProductScreen extends State<ViewProduct>{
                                                     ),
                                                     colorBrightness: Brightness.light,
                                                     onPressed: () {
-                                                      //push to new page
+                                                      _displayDialog(context);
                                                     },
                                                     color: Colors.lightBlueAccent,
                                                     shape:  RoundedRectangleBorder(

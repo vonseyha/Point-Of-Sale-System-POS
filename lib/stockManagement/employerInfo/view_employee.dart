@@ -21,6 +21,8 @@ class _ViewEmployeeScreen extends State<ViewEmployee>{
   final employeePhone = new TextEditingController();
   var _employeePass;
   final employeePass = new TextEditingController();
+  var _employeeEmail;
+  final employeeEmail = new TextEditingController();
 
   TextEditingController _textFieldController = TextEditingController();
 
@@ -161,6 +163,24 @@ class _ViewEmployeeScreen extends State<ViewEmployee>{
                             children:[
                               Container(
                                 margin: const EdgeInsets.only(top: 20.0,left: 30.0),
+                                width: 500.0,
+                                child: new TextFormField(
+                                  controller: _employeeEmail,
+                                  decoration: new InputDecoration(
+                                    labelText: "Enter Email",
+                                    fillColor: Colors.white,
+                                    border: new OutlineInputBorder(
+                                      borderRadius: new BorderRadius.circular(5.0),
+                                      borderSide: new BorderSide(
+                                      ),
+                                    ),
+                                    //fillColor: Colors.green
+                                  ),
+                                ),
+                              ),
+
+                              Container(
+                                margin: const EdgeInsets.only(top: 20.0,left: 40.0),
                                 width: 500.0,
                                 child: new TextFormField(
                                   controller: employeePass,
@@ -1020,7 +1040,7 @@ class _ViewEmployeeScreen extends State<ViewEmployee>{
                                                     ),
                                                     colorBrightness: Brightness.light,
                                                     onPressed: () {
-                                                      //push to new page
+                                                      _displayDialog(context);
                                                     },
                                                     color: Colors.lightBlueAccent,
                                                     shape:  RoundedRectangleBorder(
