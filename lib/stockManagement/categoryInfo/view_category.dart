@@ -98,11 +98,11 @@ class _ViewCategoryScreen extends State<ViewCategory>{
                         Padding(
                           padding: const EdgeInsets.only(left: 10.0),
                           child: new Text(
-                            'Category Insert',
+                            'CATEGORY INSERT',
                             style: new TextStyle(
                               fontFamily: 'RobotoMono',
                               fontSize: 30.0,
-                              color: Colors.black,
+                              color: Colors.red,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -203,15 +203,39 @@ class _ViewCategoryScreen extends State<ViewCategory>{
                                           child: Row(
                                             children: [
                                               Container(
-                                                width: 100.0,
-                                                height: 45.0,
+                                                width: 85.0,
+                                                height: 35.0,
+                                                padding: const EdgeInsets.only(bottom: 2.0 , left: 10.0 ),
+                                                child: new RaisedButton(
+                                                  child: new Text(
+                                                      "view",
+                                                      style: new TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 15.0,
+                                                        fontFamily: 'RobotoMono',
+                                                      )
+                                                  ),
+                                                  colorBrightness: Brightness.light,
+                                                  onPressed: () {
+                                                    //push to new page
+                                                  },
+                                                  color: Colors.greenAccent,
+                                                  shape:  RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(5.0),
+                                                  ),
+                                                ),
+                                              ),
+
+                                              Container(
+                                                width: 85.0,
+                                                height: 35.0,
                                                 padding: const EdgeInsets.only(bottom: 2.0 , left: 10.0 ),
                                                 child: new RaisedButton(
                                                   child: new Text(
                                                       "edit",
                                                       style: new TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 20.0,
+                                                        fontSize: 15.0,
                                                         fontFamily: 'RobotoMono',
                                                       )
                                                   ),
@@ -228,14 +252,14 @@ class _ViewCategoryScreen extends State<ViewCategory>{
                                               //New button in row
                                               Container(
                                                padding: const EdgeInsets.only(bottom: 2.0 ,left: 10.0),
-                                                width: 100.0,
-                                                height: 45.0,
+                                                width: 85.0,
+                                                height: 35.0,
                                                 child: new RaisedButton(
                                                   child: new Text(
                                                       "delete",
                                                       style: new TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 20.0,
+                                                        fontSize: 15.0,
                                                         fontFamily: 'RobotoMono',
                                                       )
                                                   ),
