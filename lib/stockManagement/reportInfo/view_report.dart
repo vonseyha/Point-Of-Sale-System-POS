@@ -15,7 +15,7 @@ class _ViewReportScreen extends State<ViewReport>{
   String _productTitle = "Your Report";
   int _productNumber = 2 ;
   String _productPrice = "10.00";
-  int _productDiscountPrice = 10;
+  int _productDiscountPrice = 15;
   int _productSubtotalPrice = 20;
 
 
