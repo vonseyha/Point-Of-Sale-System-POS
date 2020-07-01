@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'employee_detail.dart';
+
 class ViewEmployee extends StatefulWidget{
   ViewEmployee() : super();
 
@@ -1016,7 +1018,7 @@ class _ViewEmployeeScreen extends State<ViewEmployee>{
                                                     ),
                                                     colorBrightness: Brightness.light,
                                                     onPressed: () {
-                                                      //push to new page
+                                                     // EmployeeDetail();//----------------------------
                                                     },
                                                     color: Colors.greenAccent,
                                                     shape:  RoundedRectangleBorder(
