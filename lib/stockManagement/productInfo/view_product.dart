@@ -39,6 +39,15 @@ class _ViewProductScreen extends State<ViewProduct>{
     "Salary"
   ];
 
+  String img = "images/s1.jpg";
+  String name = "អាវយឺតសម័យថ្មី";
+  String category = "អាវយឺត";
+  String wprice = "20 ដុល្លារ";
+  String rprice = "3 ដុល្លារ";
+  String status = "ផលិតនៅប្រទេសចិនលំដាប់ថ្នាក់ទី១";
+  String Des = "ជាលផិតផលល្អលំដាប់ថ្នាក់ទីមួយ ស្វិត មិនហើរពណ៍និងមានគុណភាពខ្ពស់ក្នុងការប្រើប្រាស់";
+
+
 
   TextEditingController _textFieldController = TextEditingController();
 
@@ -303,6 +312,137 @@ class _ViewProductScreen extends State<ViewProduct>{
                   Navigator.of(context).pop();
                 },
               )
+            ],
+
+          );
+        });
+  }
+  _displayDialogView(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            ),
+            content: Container(
+              width: double.maxFinite,
+              child: ListView(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        width:500,
+                        height:500,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image:AssetImage("$img"),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 500,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top:20),
+                          child: Column(
+                            children: [
+                              Container(
+                                alignment: Alignment.topLeft,
+                                margin: const EdgeInsets.only(top:20.0),
+                                child: new Text(
+                                  'Name : $name',
+                                  style: new TextStyle(
+                                    fontSize: 25.0,
+                                    fontFamily: 'RobotoMono',
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.topLeft,
+                                margin: const EdgeInsets.only(top:20.0),
+                                child: new Text(
+                                  'Category : $category',
+                                  style: new TextStyle(
+                                    fontSize: 25.0,
+                                    fontFamily: 'RobotoMono',
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.topLeft,
+                                margin: const EdgeInsets.only(top:20.0),
+                                child: new Text(
+                                  'Wholesale Price : $wprice',
+                                  style: new TextStyle(
+                                    fontSize: 25.0,
+                                    fontFamily: 'RobotoMono',
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.topLeft,
+                                margin: const EdgeInsets.only(top:20.0),
+                                child: new Text(
+                                  'Retail Price : $rprice',
+                                  style: new TextStyle(
+                                    fontSize: 25.0,
+                                    fontFamily: 'RobotoMono',
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.topLeft,
+                                margin: const EdgeInsets.only(top:20.0),
+                                child: new Text(
+                                  'Status : $status',
+                                  style: new TextStyle(
+                                    fontSize: 25.0,
+                                    fontFamily: 'RobotoMono',
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.topLeft,
+                                margin: const EdgeInsets.only(top:20.0),
+                                child: new Text(
+                                  'Description : $Des',
+                                  style: new TextStyle(
+                                    fontSize: 25.0,
+                                    fontFamily: 'RobotoMono',
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                      padding:EdgeInsets.symmetric(horizontal:10.0),
+                      margin: const EdgeInsets.only(top:100),
+                      child:Container(
+                        height:30,
+                        color:(Colors.orange),
+                      )
+                  ),
+                ],
+              ),
+            ),
+
+            actions: <Widget>[
+              Container(
+                margin: const EdgeInsets.all(20),
+                width: 130.0,
+                height: 40.0,
+                child: new FlatButton(
+                  child: new Text('concel',style: new TextStyle(fontSize: 20.0,color:Colors.white),),
+                  color: Colors.orange,
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
             ],
 
           );
@@ -592,6 +732,7 @@ class _ViewProductScreen extends State<ViewProduct>{
                                                     ),
                                                     colorBrightness: Brightness.light,
                                                     onPressed: () {
+                                                      _displayDialogView(context);
                                                       //push to new page
                                                     },
                                                     color: Colors.greenAccent,

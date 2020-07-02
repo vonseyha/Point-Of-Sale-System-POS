@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Login',
       debugShowCheckedModeBanner: false,
-      home: Welcome(),
+      home: ViewProduct(),
     );
   }
 }

@@ -4,8 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'employee_detail.dart';
-
 class ViewEmployee extends StatefulWidget{
   ViewEmployee() : super();
 
@@ -25,6 +23,10 @@ class _ViewEmployeeScreen extends State<ViewEmployee>{
   final employeePass = new TextEditingController();
   var _employeeEmail;
   final employeeEmail = new TextEditingController();
+
+  String name = 'Von Seyha';
+  String email = 'seyha@gmail.com';
+  String phonenumber = '0969840040';
 
   TextEditingController _textFieldController = TextEditingController();
 
@@ -229,6 +231,114 @@ class _ViewEmployeeScreen extends State<ViewEmployee>{
                   Navigator.of(context).pop();
                 },
               )
+            ],
+
+          );
+        });
+  }
+
+  _displayDialogView(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            ),
+            content: Container(
+              width: double.maxFinite,
+              child: ListView(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(top:100,left: 20),
+                        width:500,
+                        height:400,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image:AssetImage("images/employee_icon.png"),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 100.0),
+                        child: Padding(
+                          padding: const EdgeInsets.only(top:20),
+                          child: Column(
+                            children: [
+                              Container(
+                                alignment: Alignment.center,
+                                width:150,
+                                height:150,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image:AssetImage("images/iconprofile.png"),
+                                  ),
+                                ),
+                              ),
+
+                              Container(
+                                margin: const EdgeInsets.only(top:20.0),
+                                child: new Text(
+                                  'Name : $name',
+                                  style: new TextStyle(
+                                    fontSize: 25.0,
+                                    fontFamily: 'RobotoMono',
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(top:20.0),
+                                child: new Text(
+                                  'Email : $email',
+                                  style: new TextStyle(
+                                    fontSize: 25.0,
+                                    fontFamily: 'RobotoMono',
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(top:20.0),
+                                child: new Text(
+                                  'Phone Number : $phonenumber',
+                                  style: new TextStyle(
+                                    fontSize: 25.0,
+                                    fontFamily: 'RobotoMono',
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                      padding:EdgeInsets.symmetric(horizontal:10.0),
+                      margin: const EdgeInsets.only(top:100),
+                      child:Container(
+                        height:30,
+                        color:(Colors.orange),
+                      )
+                  ),
+                ],
+              ),
+            ),
+
+            actions: <Widget>[
+              Container(
+                margin: const EdgeInsets.all(20),
+                width: 130.0,
+                height: 40.0,
+                child: new FlatButton(
+                  child: new Text('concel',style: new TextStyle(fontSize: 20.0,color:Colors.white),),
+                  color: Colors.orange,
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
             ],
 
           );
@@ -443,7 +553,8 @@ class _ViewEmployeeScreen extends State<ViewEmployee>{
                                                     ),
                                                     colorBrightness: Brightness.light,
                                                     onPressed: () {
-                                                      //push to new page
+                                                      _displayDialogView(context);
+                                                      //push to new page----------------------------
                                                     },
                                                     color: Colors.greenAccent,
                                                     shape:  RoundedRectangleBorder(
@@ -467,7 +578,7 @@ class _ViewEmployeeScreen extends State<ViewEmployee>{
                                                     ),
                                                     colorBrightness: Brightness.light,
                                                     onPressed: () {
-                                                      //push to new page
+                                                      //push to new page--------------------
                                                     },
                                                     color: Colors.lightBlueAccent,
                                                     shape:  RoundedRectangleBorder(
@@ -491,7 +602,7 @@ class _ViewEmployeeScreen extends State<ViewEmployee>{
                                                     ),
                                                     colorBrightness: Brightness.light,
                                                     onPressed: () {
-                                                      //push to new page
+                                                      //push to new page--------------------------
                                                     },
                                                     color: Colors.red,
                                                     shape:  RoundedRectangleBorder(
@@ -1018,7 +1129,7 @@ class _ViewEmployeeScreen extends State<ViewEmployee>{
                                                     ),
                                                     colorBrightness: Brightness.light,
                                                     onPressed: () {
-                                                     // EmployeeDetail();//----------------------------
+                                                      //----------------------------
                                                     },
                                                     color: Colors.greenAccent,
                                                     shape:  RoundedRectangleBorder(
@@ -1076,13 +1187,10 @@ class _ViewEmployeeScreen extends State<ViewEmployee>{
                                                 )
                                               ],
                                             ),
-
                                           )
                                       ),
                                     ]),
-
                                   ],
-
                                 ),
                               ],
                             ),
