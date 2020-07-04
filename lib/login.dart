@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:pos_app/dashbaord.dart';
 import 'package:pos_app/profile.dart';
 import 'api_call.dart';
 import 'profile.dart';
@@ -191,6 +192,8 @@ class _LoginScreen extends State<Login> {
           conEmail.clear();
           conPassword.clear();
           print('Login Button Pressed');
+          //--------------------------
+          Navigator.push(context, MaterialPageRoute(builder: (context) => Dashbaord()));
         },
         padding: EdgeInsets.all(17.0),
         shape: RoundedRectangleBorder(

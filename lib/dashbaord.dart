@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pos_app/report.dart';
 import 'package:pos_app/stockManagement/categoryInfo/view_category.dart';
@@ -24,7 +25,7 @@ class HomeScreenState extends State<Dashbaord>
   @override
   void initState() {
     super.initState();
-    tabController = new TabController(vsync: this, length:7 , initialIndex: 0)
+    tabController = new TabController(vsync: this, length:5 , initialIndex: 0)
       ..addListener(() {
         setState(() {
           active = tabController.index;
@@ -61,16 +62,23 @@ class HomeScreenState extends State<Dashbaord>
               ),
             ]),
         actions: <Widget>[
-          Container(
-            child: IconButton(
-              padding: EdgeInsets.all(0),
-              icon: Icon(Icons.exit_to_app),
-              onPressed: () {
-                //Navigator.pop(context);
-              },
-            ),
-          ),
-          SizedBox(width: 32),
+          Row(
+            children: [
+              Container(
+                child: new Text('Logout',style: new TextStyle(fontSize: 20.0),),
+              ),
+              Container(
+                child: IconButton(
+                  padding: EdgeInsets.all(0),
+                  icon: Icon(Icons.exit_to_app),
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Welcome()));
+                  },
+                ),
+              ),
+              SizedBox(width: 32),
+            ],
+          )
         ],
         backgroundColor: Colors.blueAccent,
         // automaticallyImplyLeading: false,
@@ -99,23 +107,19 @@ class HomeScreenState extends State<Dashbaord>
               controller: tabController,
               children: [
                 ViewEmployee(),
-                ViewCustomer(),
                 ViewSuplier(),
                 ViewProduct(),
                 ViewCategory(),
                 ViewReport(),
-                Welcome(),
               ],
             ),
           )
         ],
       ),
-
       drawer: Padding(
           padding: EdgeInsets.only(top: 80),
           child: Drawer(child: listDrawerItems(true))),
     );
-
   }
 
   Widget listDrawerItems(bool drawerStatus) {
@@ -128,7 +132,6 @@ class HomeScreenState extends State<Dashbaord>
             tabController.animateTo(0);
             drawerStatus ? Navigator.pop(context) : print("");
           },
-
           child: Align(
             alignment: Alignment.centerLeft,
             child: Container(
@@ -149,41 +152,10 @@ class HomeScreenState extends State<Dashbaord>
             ),
           ),
         ),
-
-
         FlatButton(
           color: tabController.index == 1 ? Colors.grey[100] : Colors.white,
           onPressed: () {
-            print(tabController.index);
             tabController.animateTo(1);
-            drawerStatus ? Navigator.pop(context) : print("");
-          },
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              padding: EdgeInsets.only(top: 22, bottom: 22, right: 22),
-              child: Row(children: [
-                Icon(Icons.exit_to_app,color: Colors.blueAccent),
-                SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  "Customer",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'HelveticaNeue',
-                  ),
-                ),
-              ]),
-            ),
-          ),
-        ),
-
-
-        FlatButton(
-          color: tabController.index == 2 ? Colors.grey[100] : Colors.white,
-          onPressed: () {
-            tabController.animateTo(2);
             drawerStatus ? Navigator.pop(context) : print("");
           },
           child: Align(
@@ -206,15 +178,13 @@ class HomeScreenState extends State<Dashbaord>
             ),
           ),
         ),
-
         FlatButton(
-          color: tabController.index == 3 ? Colors.grey[100] : Colors.white,
+          color: tabController.index == 2 ? Colors.grey[100] : Colors.white,
           //color: Colors.grey[100],
           onPressed: () {
-            tabController.animateTo(3);
+            tabController.animateTo(2);
             drawerStatus ? Navigator.pop(context) : print("");
           },
-
           child: Align(
             alignment: Alignment.centerLeft,
             child: Container(
@@ -235,15 +205,13 @@ class HomeScreenState extends State<Dashbaord>
             ),
           ),
         ),
-
         FlatButton(
-          color: tabController.index == 4 ? Colors.grey[100] : Colors.white,
+          color: tabController.index == 3 ? Colors.grey[100] : Colors.white,
           //color: Colors.grey[100],
           onPressed: () {
-            tabController.animateTo(4);
+            tabController.animateTo(3);
             drawerStatus ? Navigator.pop(context) : print("");
           },
-
           child: Align(
             alignment: Alignment.centerLeft,
             child: Container(
@@ -264,15 +232,13 @@ class HomeScreenState extends State<Dashbaord>
             ),
           ),
         ),
-
         FlatButton(
-          color: tabController.index == 5 ? Colors.grey[100] : Colors.white,
+          color: tabController.index == 4 ? Colors.grey[100] : Colors.white,
           //color: Colors.grey[100],
           onPressed: () {
-            tabController.animateTo(5);
+            tabController.animateTo(4);
             drawerStatus ? Navigator.pop(context) : print("");
           },
-
           child: Align(
             alignment: Alignment.centerLeft,
             child: Container(
@@ -293,36 +259,6 @@ class HomeScreenState extends State<Dashbaord>
             ),
           ),
         ),
-
-        FlatButton(
-          color: tabController.index == 6 ? Colors.grey[100] : Colors.white,
-          //color: Colors.grey[100],
-          onPressed: () {
-            tabController.animateTo(6);
-            drawerStatus ? Navigator.pop(context) : print("");
-          },
-
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              padding: EdgeInsets.only(top: 22, bottom: 22, right: 22),
-              child: Row(children: [
-                Icon(Icons.exit_to_app,color: Colors.blueAccent),
-                SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  "Logout",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'HelveticaNeue',
-                  ),
-                ),
-              ]),
-            ),
-          ),
-        ),
-
       ],
     );
   }
