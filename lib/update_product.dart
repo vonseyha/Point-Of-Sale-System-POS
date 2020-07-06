@@ -368,7 +368,6 @@ class _PickImageDemoState extends State<ProductUpdate > {
             )
           ],
         ),
-
       ),
     );
   }

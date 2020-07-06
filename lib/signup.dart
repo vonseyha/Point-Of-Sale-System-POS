@@ -1,9 +1,13 @@
+import 'dart:convert';
+import 'profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pos_app/constant.dart';
 import 'package:pos_app/login.dart';
 import 'package:pos_app/wallpaper.dart';
+import 'api_call.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -12,14 +16,12 @@ class SignUp extends StatefulWidget {
 
 class _SignUpScreen extends State<SignUp> {
 
-  var _username;
-  final conUsername = new TextEditingController();
-  var _phoneNumber;
-  final conPhone = new TextEditingController();
-  var _email;
-  final conEmail = new TextEditingController();
-  var _password;
-  final conPassword = new TextEditingController();
+  TextEditingController conUsername = new TextEditingController();
+  TextEditingController conPhone = new TextEditingController();
+  TextEditingController conEmail = new TextEditingController();
+  TextEditingController conPassword = new TextEditingController();
+
+  bool _isLoading = false;
 
   Widget _buildUsernameTF() {
     return Column(
@@ -31,7 +33,7 @@ class _SignUpScreen extends State<SignUp> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           width: 500.0,
-          child: TextField(
+          child: TextFormField(
             controller: conUsername,
             keyboardType: TextInputType.text,
             style: TextStyle(
@@ -65,7 +67,7 @@ class _SignUpScreen extends State<SignUp> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           width: 500.0,
-          child: TextField(
+          child: TextFormField(
             controller: conPhone,
             keyboardType: TextInputType.phone,
             style: TextStyle(
@@ -99,7 +101,7 @@ class _SignUpScreen extends State<SignUp> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           width: 500.0,
-          child: TextField(
+          child: TextFormField(
             controller: conEmail,
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
@@ -164,20 +166,12 @@ class _SignUpScreen extends State<SignUp> {
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () {
-          setState(() {
-            _username = conUsername.text;
-            _phoneNumber = conPhone.text;
-            _email = conEmail.text;
-            _password = conPassword.text;
-
-            if(_buildLoginBtn()!=null){
-              print('ok');
-              _username = null;
-              _phoneNumber = null;
-              _email = null;
-              _password = null;
-            }
-          });
+          _isLoading ? null : _signUp;
+          conUsername.clear();
+          conPhone.clear();
+          conEmail.clear();
+          conPassword.clear();
+          print('Login Button Pressed');
         },
         padding: EdgeInsets.all(17.0),
         shape: RoundedRectangleBorder(
@@ -330,32 +324,41 @@ class _SignUpScreen extends State<SignUp> {
                       ),
                     ),
                     Container(
+                      margin: EdgeInsets.all(10.0),
                       height: double.infinity,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      child: ListView(
+                        shrinkWrap: true,
                         children: <Widget>[
-                          Text(
-                            'REGISTER',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'OpenSans',
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold,
+                          Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                SizedBox(height: 50.0),
+                                Text(
+                                  'REGISTER',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'OpenSans',
+                                    fontSize: 40.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 30.0),
+                                _buildUsernameTF(),
+                                SizedBox(height: 10.0),
+                                _buildPhoneTF(),
+                                SizedBox(height: 20.0),
+                                _buildEmailTF(),
+                                SizedBox(height: 20.0),
+                                _buildPasswordTF(),
+                                SizedBox(height: 20.0),
+                                _buildRegisterBtn(),
+                                _buildSignInWith(),
+                                _buildSocialBtnRow(),
+                                _buildLoginBtn(),
+                              ],
                             ),
                           ),
-                          SizedBox(height: 30.0),
-                          _buildUsernameTF(),
-                          SizedBox(height: 30.0),
-                          _buildPhoneTF(),
-                          SizedBox(height: 30.0),
-                          _buildEmailTF(),
-                          SizedBox(height: 30.0),
-                          _buildPasswordTF(),
-                          SizedBox(height: 20.0),
-                          _buildRegisterBtn(),
-                          _buildSignInWith(),
-                          _buildSocialBtnRow(),
-                          _buildLoginBtn(),
                         ],
                       ),
                     )
@@ -367,5 +370,34 @@ class _SignUpScreen extends State<SignUp> {
         ),
       ),
     );
+  }
+
+  void _signUp() async{
+    setState(() {
+      _isLoading = true;
+    });
+    var data = {
+      'staff_name' : conUsername.text,
+      'staff_phonenumber' : conPhone.text,
+      'staff_email' : conEmail.text,
+      'staff_password' : conPassword.text,
+    };
+    var res = await CallApi().postData(data, 'staff/register');
+    var body = json.decode(res.body);
+    if(body['success']){
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      localStorage.setString('token', body['token']);
+      localStorage.setString('user', json.encode(body['user']));
+
+      Navigator.push(
+          context,
+          new MaterialPageRoute(
+              builder: (context) => Profile()));
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
+
   }
 }
