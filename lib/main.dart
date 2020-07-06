@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pos_app/add_product.dart';
 import 'package:pos_app/login.dart';
 import 'package:pos_app/report.dart';
+import 'package:pos_app/stockSale.dart';
 import 'package:pos_app/update_product.dart';
+import 'package:pos_app/wallpaper.dart';
 import 'package:pos_app/welcome.dart';
 
 import 'cashier_Profie_detail.dart';
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Login',
       debugShowCheckedModeBanner: false,
-      home:  Report(),
+      home: StockSale(),
     );
   }
 }
